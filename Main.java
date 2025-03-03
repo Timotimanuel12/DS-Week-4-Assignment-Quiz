@@ -1,4 +1,5 @@
 import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
         Scanner scnr = new Scanner(System.in);
@@ -18,42 +19,48 @@ public class Main {
             String choice = scnr.next();
             scnr.nextLine();
 
-            if (choice.equalsIgnoreCase("A")) {
-                System.out.println("Add name: ");
-                String name = scnr.nextLine();
-                System.out.println("Add Phone number: ");
-                String number = scnr.nextLine();
-                System.out.println("Add email: ");
-                String email = scnr.nextLine();
-                contactList.addContact(name, number, email);
-            }
-            else if (choice.equalsIgnoreCase("D")) {
-                System.out.println("Enter a contact to delete: ");
-                String name = scnr.nextLine();
-                contactList.deleteContact(name);
-            }
-            else if (choice.equalsIgnoreCase("S")){
-                System.out.println("Search contact by name: ");
-                String name = scnr.nextLine();
-                contactList.searchContact(name);
-            }
-            else if (choice.equalsIgnoreCase("E")) {
-                System.out.println("Search contact by Email: ");
-                String name = scnr.nextLine();
-                contactList.searchByEmail(name);
-            }
-            else if (choice.equalsIgnoreCase("P")) {
-                contactList.printContacts();
-            }
-            else if (choice.equalsIgnoreCase("Q")){
-                System.out.println("Exiting program...");
-                break;
-            }
-            else {
-                System.out.println("Invalid choice, please try again");
-            }
+            switch (choice.toUpperCase()) {
+                case "A":
+                    System.out.println("Add name: ");
+                    String name = scnr.nextLine();
+                    System.out.println("Add Phone number: ");
+                    String number = scnr.nextLine();
+                    System.out.println("Add email: ");
+                    String email = scnr.nextLine();
+                    contactList.addContact(name, number, email);
+                    break;
 
+                case "D":
+                    System.out.println("Enter a contact to delete: ");
+                    name = scnr.nextLine();
+                    contactList.deleteContact(name);
+                    break;
+
+                case "S":
+                    System.out.println("Search contact by name: ");
+                    name = scnr.nextLine();
+                    contactList.searchContact(name);
+                    break;
+
+                case "E":
+                    System.out.println("Search contact by Email: ");
+                    name = scnr.nextLine();
+                    contactList.searchByEmail(name);
+                    break;
+
+                case "P":
+                    contactList.printContacts();
+                    break;
+
+                case "Q":
+                    System.out.println("Exiting program...");
+                    scnr.close();
+                    return;  //stops program
+
+                default:
+                    System.out.println("Invalid choice, please try again");
+                    break;
+            }
         }
-        scnr.close();
     }
 }
